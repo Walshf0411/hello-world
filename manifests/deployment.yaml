@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  labels:
+    app: hello-world
+    app.kubernetes.io/name: HelloWorld
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-world
+      app.kubernetes.io/name: proxy
+  template:
+    metadata:
+      labels:
+        app: hello-world
+        app.kubernetes.io/name: proxy
+    spec:
+      containers:
+      - name: hello-world
+        image: walshf0411/tech-talk:latest
+        ports:
+        - containerPort: 8080
